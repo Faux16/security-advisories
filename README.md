@@ -11,6 +11,7 @@ alongside publication.
 | ID | Affected | Type | Severity | Status |
 |----|----------|------|----------|--------|
 | [SANKET-2026-001](advisories/SANKET-2026-001-postgres-mcp-server.md) | `postgres-mcp-server` (PyPI) ≤ 1.0.1 | Arbitrary local file read (CWE-284 → CWE-22) | High (7.1) | Reported to PyPI security 2026-09-22; CVE requested (MITRE CNA-LR, pending) |
+| [SANKET-2026-002](advisories/SANKET-2026-002-safedb-mcp.md) | `@safedb/safedb-mcp` (npm) ≤ 0.5.0 | PII-masking bypass via scalar subquery (CWE-863) | Medium (~6.5) | Reported 2026-09-19; maintainer acknowledged 2026-09-22 (fix PR invited); CVE requested (MITRE CNA-LR, pending) |
 
 ## Contact
 
