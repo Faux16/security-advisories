@@ -14,6 +14,16 @@ alongside publication.
 | [SANKET-2026-002](advisories/SANKET-2026-002-safedb-mcp.md) | `@safedb/safedb-mcp` (npm) ≤ 0.5.0 | PII-masking bypass via scalar subquery (CWE-863) | Medium (~6.5) | Reported 2026-09-19; maintainer acknowledged 2026-09-22 (fix PR invited); CVE requested (MITRE CNA-LR, pending) |
 | [SANKET-2026-003](advisories/SANKET-2026-003-universal-db-mcp.md) | `universal-db-mcp` (PyPI) ≤ 1.1.3 | Arbitrary local file read via DuckDB read_text/read_blob (CWE-22) | High (7.1) | Reported to maintainer 2026-09-19; CVE requested (MITRE CNA-LR, pending) |
 
+## Research
+
+Technical notes on agentic-system security. These are **not** vulnerability disclosures:
+they analyse behaviour that is already public and, in some cases, accepted by the vendor as
+designed. Prior work is credited in each note.
+
+| Note | Subject |
+|------|---------|
+| [MCP tool annotations as a trust boundary](research/2026-09-mcp-annotation-trust.md) | Why a server's own `readOnlyHint` deciding whether the user is asked strains the "you chose to add it" trust model |
+
 ## Contact
 
 Please report responses or questions via GitHub issues on this repository.
