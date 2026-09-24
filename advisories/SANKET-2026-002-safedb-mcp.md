@@ -3,10 +3,10 @@
 - **Advisory ID:** SANKET-2026-002
 - **Package:** [`@safedb/safedb-mcp`](https://www.npmjs.com/package/@safedb/safedb-mcp) (npm) · repo [`narekmalk/safedb-mcp`](https://github.com/narekmalk/safedb-mcp)
 - **Affected versions:** ≤ 0.5.0 (latest at time of writing)
-- **Fixed version:** none yet — maintainer has acknowledged and a fix is in progress (see *Maintainer status*)
+- **Fixed version:** fix merged to `main` via [PR #1](https://github.com/narekmalk/safedb-mcp/pull/1) (2026-09-24); pending a tagged npm release (> 0.5.0) — see *Maintainer status*
 - **Severity:** Medium (~CVSS 3.1 6.5; the reserved CVE record omits a numeric score)
 - **Weakness:** CWE-863 (Incorrect Authorization) → exposure of masked personal data (CWE-359)
-- **Status:** reported to the maintainer 2026-09-19; acknowledged 2026-09-22; CVE requested from the MITRE CNA-LR (pending)
+- **Status:** reported to the maintainer 2026-09-19; acknowledged 2026-09-22; fix merged 2026-09-24; CVE requested from the MITRE CNA-LR (pending)
 - **Credit:** Sanket Sarkar — found with [Cutout](https://github.com/Faux16/cutout), a security-testing framework for agentic systems
 
 ## Summary
@@ -58,8 +58,9 @@ drive this bypass.
 
 Unlike some abandoned packages, this project is **actively maintained**. The maintainer
 (narekmalk) acknowledged the report on 2026-09-22, indicated a fix will come as time allows, and
-invited a pull request. A fix PR implementing the lineage-based masking is being prepared; this
-advisory will be updated with the fixed version once released.
+invited a pull request.
+
+**Update (2026-09-24):** the maintainer merged the fix — [PR #1](https://github.com/narekmalk/safedb-mcp/pull/1) — into `main`. The lineage-based masking fix (scalar subqueries analyzed in their own scope, masked columns detected by lineage) is now upstream. A tagged release incorporating it is pending; users should upgrade once it ships — a fix in `main` is not yet a published npm version.
 
 ## Related
 
@@ -71,3 +72,4 @@ an instance of the general "the masking/allowlist guard has a gap" class that re
 
 - **2026-09-19** — discovered (found with Cutout); reported to the maintainer by email.
 - **2026-09-22** — maintainer acknowledged and invited a fix PR; CVE requested from the MITRE CNA-LR; this advisory published.
+- **2026-09-24** — maintainer merged the fix ([PR #1](https://github.com/narekmalk/safedb-mcp/pull/1)) into `main`; advisory updated.

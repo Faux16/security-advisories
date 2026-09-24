@@ -3,10 +3,10 @@
 - **Advisory ID:** SANKET-2026-001
 - **Package:** [`postgres-mcp-server`](https://pypi.org/project/postgres-mcp-server/) (PyPI, Python)
 - **Affected versions:** all released versions — `1.0.0` and `1.0.1` (latest)
-- **Fixed version:** none (unmaintained; see *Maintainer status*)
+- **Fixed version:** none at time of writing (see *Maintainer & provenance*)
 - **Severity:** High — CVSS 3.1 `AV:N/AC:L/PR:L/UI:N/S:U/C:H/I:N/A:N` (7.1)
 - **Weakness:** CWE-284 (Improper Access Control) → CWE-22 (arbitrary file read)
-- **Status:** reported to PyPI security 2026-09-22; CVE requested from the MITRE CNA-LR (pending)
+- **Status:** reported to PyPI security 2026-09-22 (redirected to the project tracker 2026-09-23); being reported to the upstream repository `github.com/cdmx-in/postgres-mcp`; CVE requested from the MITRE CNA-LR (pending)
 - **Credit:** Sanket Sarkar — found with [Cutout](https://github.com/Faux16/cutout), a security-testing framework for agentic systems
 
 ## Summary
@@ -54,21 +54,29 @@ role.
   `pg_read_server_files` / `pg_monitor` / superuser, so these functions are denied at the DB layer.
 - Restrict which clients/agents can reach the MCP server (network + auth).
 
-## Remediation (for a maintainer, if the package is revived)
+## Remediation (for the maintainer)
 
 Reject the dangerous built-ins — at minimum `pg_read_file`, `pg_read_binary_file`, `pg_ls_dir`
 (and its fixed-subdir siblings `pg_ls_tmpdir`/`pg_ls_logdir`/`pg_ls_waldir`), `pg_stat_file`,
 `lo_import`/`lo_export`, `dblink*`, and `COPY … TO/FROM (PROGRAM)`. Prefer parsing the statement and
 **allowlisting** permitted constructs over a denylist (a denylist keeps missing functions).
 
-## Maintainer status
+## Maintainer & provenance
 
-The package appears **unmaintained with fabricated provenance**: its declared repository
-`github.com/mcp-community/postgres-mcp-server` returns 404, its author email (`community@mcp.dev`)
-and homepage (`modelcontextprotocol.io`, the official Model Context Protocol site — this is **not**
-an official MCP project) are not associated with a reachable maintainer, and the `mcp-community`
-GitHub organization (created 2021, before MCP existed) does not host the project. The issue was
-therefore reported to **PyPI security** on 2026-09-22.
+The package **is maintained**, but its PyPI metadata **misrepresents its provenance**. The real
+source repository is [`github.com/cdmx-in/postgres-mcp`](https://github.com/cdmx-in/postgres-mcp)
+(it publishes this package — `pip install postgres-mcp-server`), and the PyPI project's maintainer
+account is `cdmx` (the same `cdmx-in` identity). The declared metadata, however, points elsewhere:
+the listed repository `github.com/mcp-community/postgres-mcp-server` returns 404, the author email
+is `community@mcp.dev`, and the homepage is `modelcontextprotocol.io` — the **official** Model
+Context Protocol site, which this is **not** a project of; the unrelated `mcp-community` GitHub org
+(created 2021, before MCP existed) does not host it. So the package presents itself as an official
+MCP-community project while actually being a personal `cdmx-in` project — a **fabricated-provenance /
+impersonation** concern independent of the file-read bug.
+
+The issue was first reported to **PyPI security** on 2026-09-22; PyPI (which handles pypi.org the
+platform, not hosted projects) redirected it to the project tracker on 2026-09-23, identifying the
+`cdmx-in/postgres-mcp` repository. It is being reported upstream there.
 
 ## Related
 
@@ -80,3 +88,4 @@ writing.
 ## Timeline
 
 - **2026-09-22** — discovered; reported to PyPI security; CVE requested from the MITRE CNA-LR; this advisory published.
+- **2026-09-23** — PyPI security redirected the report to the project tracker, identifying the real repository `github.com/cdmx-in/postgres-mcp`; advisory updated (provenance is impersonation, not an absent maintainer); reporting upstream.
